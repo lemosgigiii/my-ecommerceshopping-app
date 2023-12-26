@@ -24,6 +24,8 @@ const Search = ({onSearchHandlerEvent}) => {
         onSearchHandlerEvent(searchInput)
     }
 
+  
+
   return (
     <View style={styles.searchContainer}>
       <TextInput

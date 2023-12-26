@@ -3,11 +3,13 @@ import Header from '../components/Header'
 import categories_data from  '../data/categories_data.json'
 import CategoryItem from '../components/CategoryItem'
 
-const categoriesScreen = ({onSelectCategoryEvent}) => {
+const CategoriesScreen = ({navigation}) => {
   
   const renderCategoryItem = ({item}) => (
-    <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent}/>
+    <CategoryItem category={item} navigation={navigation}/>
   )
+
+  
 
   return(
     <>
@@ -21,7 +23,7 @@ const categoriesScreen = ({onSelectCategoryEvent}) => {
   )
 }
 
-export default categoriesScreen
+export default CategoriesScreen
 
 const styles = StyleSheet.create({
 })

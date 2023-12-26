@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 
-const ProductItem = ({product}) => {
+const ProductItem = ({product, navigation}) => {
   return (
-    <TouchableOpacity style={styles.containerProdcutItem}>
+    <TouchableOpacity onPress={()=>navigation.navigate("Details")} style={styles.containerProdcutItem}>
       <Text style={styles.productTitle}>{product.title}</Text>
       <Image
         Style={styles.productImage}
@@ -12,6 +12,8 @@ const ProductItem = ({product}) => {
     </TouchableOpacity>
   )
 }
+
+
 
 export default ProductItem
 
