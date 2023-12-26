@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { colors } from '../global/colors'
+import { Ionicons } from '@expo/vector-icons'; 
 
-const Header = ({title}) => {
+const Header = ({title, navigation}) => {
   return (
     <View style={styles.headercontainer}>
+      <TouchableOpacity onPress={navigation.goBack}>
+        <Ionicons name="ios-arrow-back-circle-outline" size={26} color="grey" />
+      </TouchableOpacity>
       <Text style={styles.headerTitle}>{title}</Text>
     </View>
   )
@@ -14,12 +18,17 @@ export default Header
 const styles = StyleSheet.create({
   headercontainer: {
     height: 100,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 45,
+    paddingVertical: 37,
+    paddingStart: 15,
     alignItems: 'center',
     backgroundColor: colors.primary,
   },
   headerTitle : {
     color: colors.secondary,
-    fontFamily: 'Alegreya-Bold'
+    fontFamily: 'EBGaramond-Bold',
+    fontSize: 20,
   }
 })

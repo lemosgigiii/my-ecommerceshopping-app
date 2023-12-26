@@ -1,14 +1,16 @@
 import { ActivityIndicator, StyleSheet, Text, View, Image, TouchableOpacity, useWindowDimensions, ScrollView } from 'react-native'
 import products_data from '../data/products_data.json'
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
+//import Header from '../components/Header'
 import { colors } from '../global/colors'
 
 
-const ProductDetailScreen = ({ productId }) => {
+const ProductDetailScreen = ({ route }) => {
   const [productSelected, setProductSelected] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isPortrait, setIsPortrait] = useState(true)
+
+  const productId = route.params
 
   const { height, width } = useWindowDimensions()
 
@@ -33,7 +35,7 @@ const ProductDetailScreen = ({ productId }) => {
           <ActivityIndicator />
           :
           <>
-          <Header title="details of the products" />
+          {/* <Header title="details of the products" /> */}
             <ScrollView >
               <Image
                 source={{ uri: productSelected.images[0] }}
@@ -63,7 +65,6 @@ const styles = StyleSheet.create({
     minWidth: 300,
     width: '100%',
     height: 400,
-
   },
   imageProductLandscape: {
     width: 200,
@@ -71,17 +72,20 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     alignItems: 'center',
+    color: "grey",
   },
   title: {
-    fontFamily: 'Alegreya-Bold',
+    fontFamily: 'EBGaramond-Bold',
     fontSize: 32,
+    color: "grey",
   },
   description: {
-    fontFamily: 'Alegreya-Regular',
+    fontFamily: 'EBGaramond-Bold',
     fontSize: 20,
+    color: "grey",
   },
   price: {
-    fontFamily: 'Alegreya-Bold',
+    fontFamily: 'EBGaramond-Bold',
     fontSize: 32,
     color: colors.secondary
   },
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buyText: {
-    color: '#000'
+    color: "green",
   },
   buyAlt: {
     marginTop: 10,

@@ -13,8 +13,8 @@ export default function App() {
   //console.log("categoria sleccionada:", categorySelected)
 
   const [fontLoaded] = useFonts({
-    'Alegreya-regular': require('./assets/fonts/Alegreya-Regular.ttf'),
-    'Alegreya-Bold': require('./assets/fonts/Alegreya-Bold.ttf'),
+    'EBGaramond-Bold': require('./assets/fonts/EBGaramond-Bold.ttf'),
+    'Alegreya-Regular': require('./assets/fonts/EBGaramond-Regular.ttf'),
   })
 
   if (!fontLoaded) return <ActivityIndicator />

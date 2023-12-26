@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   text: {
-    fontSize: 12
+    fontFamily: 'EBGaramond-Bold',
+    fontSize: 15,
+    paddingLeft: 10,
+    color: "grey",
   }
 })

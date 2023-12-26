@@ -35,10 +35,10 @@ const Search = ({onSearchHandlerEvent}) => {
         value={searchInput}
     />
     <TouchableOpacity onPress={()=>onSearchHandlerEvent(searchInput)}>
-    <MaterialCommunityIcons name="shopping-search" size={24} color="black" />
+    <MaterialCommunityIcons name="shopping-search" size={24} color="grey" />
     </TouchableOpacity>
     <TouchableOpacity onPress={onResetSearchHandler}>
-    <Entypo name="circle-with-cross" size={24} color="black" />
+    <Entypo name="circle-with-cross" size={24} color="grey" />
     </TouchableOpacity>
     </View>
   )
@@ -50,9 +50,13 @@ const styles = StyleSheet.create({
     searchContainer :{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding:10,
+        padding:20,
+        
     },
     textInput:{
         width: '80%',
+        fontFamily: 'EBGaramond-Bold',
+        fontSize: 18,
+        color: "grey",
     },
 })
