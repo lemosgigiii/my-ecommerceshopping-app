@@ -1,6 +1,6 @@
 import { ActivityIndicator } from 'react-native';
-import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
-import CategoriesScreen from './src/screens/CategoriesScreen';
+//import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
+//import CategoriesScreen from './src/screens/CategoriesScreen';
 import {useFonts} from 'expo-font'
 import {useState} from 'react';
 import Navigator from './src/navigation/Navigator'
