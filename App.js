@@ -1,10 +1,9 @@
 import { ActivityIndicator } from 'react-native';
-//import CategoriesScreen from './src/screens/CategoriesScreen'
-//import ProductDetailScreen from './src/screens/ProductDetailScreen';
-//import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
-import { useFonts } from 'expo-font'
-import { useState } from 'react';
-import Navigator from './src/navigation/Navigator';
+import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
+import CategoriesScreen from './src/screens/CategoriesScreen';
+import {useFonts} from 'expo-font'
+import {useState} from 'react';
+
 
 export default function App() {
   const [categorySelected, setCategorySelected] = useState('')
