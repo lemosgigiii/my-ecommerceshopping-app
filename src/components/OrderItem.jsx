@@ -3,6 +3,8 @@ import React from 'react'
 import Card from './Card'
 import { Feather } from '@expo/vector-icons';
 
+//message test
+
 const OrderItem = ({ order, total }) => {
     return (
         <Card style={styles.cartItemContainer}>
