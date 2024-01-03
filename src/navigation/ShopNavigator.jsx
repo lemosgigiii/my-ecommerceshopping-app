@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
 
 import CategoriesScreen from "../screens/CategoriesScreen"
 import ProductsByCategoryScreen from "../screens/ProductsByCategoryScreen"
@@ -9,9 +8,9 @@ import Header from "../components/Header";
 
 const Stack = createNativeStackNavigator()
 
-const Navigator = () => {
+const ShopNavigator = () => {
     return (
-        <NavigationContainer>
+        
             <Stack.Navigator
                 initialRouteName="Categories"
                 screenOptions={
@@ -33,11 +32,9 @@ const Navigator = () => {
                     name="Details"
                     component={ProductDetailScreen}
                 />
-
-            </Stack.Navigator>
-
-        </NavigationContainer >
+</Stack.Navigator>
+            
     )
 }
 
-export default Navigator
+export default ShopNavigator

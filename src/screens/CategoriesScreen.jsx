@@ -14,7 +14,7 @@ const CategoriesScreen = ({navigation}) => {
   return(
     <>
     {/* <Header title="Categories" /> */}
-    <FlatList
+    <FlatList style={styles.categories}
          data={categories_data}
          renderItem={renderCategoryItem}
          keyExtractor={item=>item}
@@ -26,4 +26,7 @@ const CategoriesScreen = ({navigation}) => {
 export default CategoriesScreen
 
 const styles = StyleSheet.create({
+  categories:{
+    marginBottom: 80,
+  }
 })

@@ -5,9 +5,15 @@ import { Ionicons } from '@expo/vector-icons';
 const Header = ({title, navigation}) => {
   return (
     <View style={styles.headercontainer}>
+      {
+        navigation.canGoBack()
+        ?
       <TouchableOpacity onPress={navigation.goBack}>
         <Ionicons name="ios-arrow-back-circle-outline" size={26} color="grey" />
       </TouchableOpacity>
+      :
+      <View></View>
+}
       <Text style={styles.headerTitle}>{title}</Text>
     </View>
   )
