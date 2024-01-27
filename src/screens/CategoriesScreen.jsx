@@ -13,8 +13,6 @@ const CategoriesScreen = ({navigation}) => {
     <CategoryItem category={item} navigation={navigation}/>
   )
 
-  
-
   return(
     <>
     {/* <Header title="Categories" /> */}

@@ -4,7 +4,7 @@ import ProductItem from '../components/ProductItem'
 import { useState, useEffect } from 'react'
 import Search from '../components/Search'
 import { useSelector, useDispatch } from 'react-redux'
-import { usegetProductsByCategoryQuery } from '../services/shopService'
+import { useGetProductsByCategoryQuery } from '../services/shopService'
 
 const ProductsByCategoryScreen = ({ route, navigation }) => {
 
@@ -17,7 +17,7 @@ const ProductsByCategoryScreen = ({ route, navigation }) => {
   const category = useSelector(state => state.shopReducer.categorySelected)
   //const productsFilteredByCategory = useSelector(state =>state.shopReducer.productsFilteredByCategory)
 
-  const { data: productsFilteredByCategory, isLoading, error } = usegetProductsByCategoryQuery(category)
+  const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(category)
 
   useEffect(() => {
     //const productsFilteredByCategory = products_data.filter(product=>product.category===category)
@@ -41,7 +41,7 @@ const ProductsByCategoryScreen = ({ route, navigation }) => {
   return (
     <>
       {
-        isloading ?
+        isLoading?
           <ActivityIndicator />
           :
           <>

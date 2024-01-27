@@ -1,25 +1,30 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
-import { base_url } from "../firebase/database"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { base_url } from "../firebase/database";
 
 export const shopApi = createApi({
-    reducerPatch: "shopApi" ,
-    baseQuery: fetchBaseQuery = ({baseUrl:base_url}),
-    endpoints: (builder) => ({
-        getCategories: builder.query({
-            query:() => 'CategoriesScreen.json',
+  reducerPath: "shopApi",
+  baseQuery: fetchBaseQuery({ baseUrl: base_url }),
+  endpoints: (builder) => ({
+    getCategories: builder.query({
+      query: () => 'categories.json',
+    }),
 
-        }),
+    getProducts: builder.query({
+      query: () => 'products.json',
+    }),
 
-        getProducts: builder.query({
-            query:() => 'products.json',
+    getProductsByCategory: builder.query({
+      query: (category) => `products.json?orderBy="category"&equalTo="${category}"`,
+    }),
+    postOrder: builder.mutation({
+      query: ({...order}) => ({
+        url: 'orders.json',
+        method: 'POST',
+        body: order
 
-        }),
-        getProductsByCategory: builder.query({
-            query:(category) => 'products.json?orderBy="category"&equalTo="${category}"',
-
-        }),
+     })
     })
-
+  })
 })
 
-export const {useGetCategoriesQuery, useGetProductsQuery, usegetProductsByCategoryQuery} = shopApi
+export const { useGetCategoriesQuery, useGetProductsQuery, useGetProductsByCategoryQuery, usePostOrderMutation } = shopApi;

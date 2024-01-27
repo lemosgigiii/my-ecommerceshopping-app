@@ -2,9 +2,13 @@ import { ActivityIndicator, StyleSheet, Text, View, Image, TouchableOpacity, use
 import products_data from '../data/products_data.json'
 import { useEffect, useState } from 'react'
 import { colors } from '../global/colors'
+import { addItem } from '../features/cartSlice'
+import { setProductSelected } from '../features/shopSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const ProductDetailScreen = ({ route }) => {
+  //const [productSelected, setProductSelected] = useState({})
   const [productSelected, setProductSelected] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isPortrait, setIsPortrait] = useState(true)
@@ -23,6 +27,13 @@ const ProductDetailScreen = ({ route }) => {
     setIsLoading(false)
   }
     , [productId])
+
+    const dispatch = useDispatch()
+
+    const onAddToCart = () => {
+      dispatch(addItem({...productSelected, quantity: 1}))
+
+    }
 
    
 
@@ -45,8 +56,8 @@ const ProductDetailScreen = ({ route }) => {
                 <Text style={styles.title}>{productSelected.title}</Text>
                 <Text style={styles.description}>{productSelected.description}</Text>
                 <Text style={styles.price}>$ {productSelected.price}</Text>
-                <TouchableOpacity onPress={() => null}>
-                  <Text style={styles.buyText}>buy</Text>
+                <TouchableOpacity onPress={onAddToCart}>
+                  <Text style={styles.buyText}>add to cart</Text>
                 </TouchableOpacity>
               </View>
             </ScrollView>
