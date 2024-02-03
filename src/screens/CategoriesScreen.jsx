@@ -18,6 +18,10 @@ const CategoriesScreen = ({navigation}) => {
          renderItem={renderCategoryItem}
          keyExtractor={item=>item}
     />
+    {
+            error &&
+            <CustomError error={error} />
+        }
     </>
   )
 }
@@ -27,5 +31,8 @@ export default CategoriesScreen
 const styles = StyleSheet.create({
   categories:{
     marginBottom: 80,
+  },
+  categoryError:{
+      
   }
 })

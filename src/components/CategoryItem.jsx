@@ -9,7 +9,7 @@ const CategoryItem = ({category, navigation}) => {
 
   return (
     <TouchableOpacity onPress={()=>{
-      navigation.navigate("products",{category})
+      navigation.navigate("Products",{category})
       dispatch(setCategorySelected(category))
       }
       }>
