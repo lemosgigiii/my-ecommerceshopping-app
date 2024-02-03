@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { setProductIdSelected } from '../features/shopSlice'
 

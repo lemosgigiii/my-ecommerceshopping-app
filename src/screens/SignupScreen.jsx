@@ -23,28 +23,28 @@ const SignupScreen = ({navigation}) => {
             signupSchema.validateSync({email, password, confirmPassword}, {abortEarly:false})
         triggerSignup({email, password})
     }catch(error){
-        //console.log(error.errors)
+        
         error.errors.map(e => {
             console.log(Object.keys(e)[0])
             const customError = Object.values(e)[0]
             switch (Object.keys(e)[0]) {
               case "empty_email":
-                //console.log(customError)
+                
                 setEmailError(customError)
               case "invalid_email":
-                //console.log(customError)
+             
                 setEmailError(customError)
               case "empty_password":
-                //console.log(customError)
+            
                 setPasswordError(customError)
               case "invalid_password":
-                //console.log(customError)
+                
                 setPasswordError(customError)
               case "invalid_confirm_password":
-                //console.log(customError)
+                
                 setConfirmPasswordError(customError)
               case "invalid_match_password":
-                //console.log(customError)
+               
                 setConfirmPasswordError(customError)
               default:
                 break

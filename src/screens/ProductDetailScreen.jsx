@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 const ProductDetailScreen = ({ route }) => {
-  //const [productSelected, setProductSelected] = useState({})
   const [productSelected, setProductSelected] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isPortrait, setIsPortrait] = useState(true)

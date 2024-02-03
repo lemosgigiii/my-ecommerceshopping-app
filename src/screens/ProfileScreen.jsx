@@ -6,7 +6,8 @@ import LocationSelector from '../components/LocationSelector'
 
 const ProfileScreen = ({navigation}) => {
     const image = useSelector(state=>state.authReducer.profilePicture)
-    
+    const location = useSelector(state=>state.authReducer.location)
+     
   return (
     <>
     <View style={styles.container}>
@@ -45,6 +46,14 @@ const ProfileScreen = ({navigation}) => {
             </View>
            
         </View>
+        {
+            location.address
+            &&
+            <View style={styles.addressContainer}>
+                <Text style={styles.addressTitle}>Última ubicación guardada: </Text>
+                <Text style={styles.addressDescription}>{location.address}</Text>     
+            </View>
+        }
          <LocationSelector />
          </>
   )

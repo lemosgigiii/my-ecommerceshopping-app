@@ -1,9 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Card from './Card'
 import { Feather } from '@expo/vector-icons';
-
-//message test
 
 const OrderItem = ({ order, total }) => {
     return (

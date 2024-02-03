@@ -14,7 +14,7 @@ const LoginScreen = ({navigation}) => {
     const [triggerLogIn, result] = useLogInMutation()
 
     const onSubmit = () => {
-        triggerLogIn({email, password})
+        triggerLogIn({email:"gigi2001.es@gmail.com", password:"Paul2323"})
         console.log(result)
     }
     const dispatch = useDispatch ()
@@ -42,7 +42,7 @@ const LoginScreen = ({navigation}) => {
             </TouchableOpacity>
             <View style={styles.altContainer}>
                 <Text style={styles.subtitle}>You dont have a account?</Text>
-                <TouchableOpacity onPress={() => { navigation.navigate("Login") }}>
+                <TouchableOpacity onPress={() => { navigation.navigate("Signup") }}>
                     <Text style={styles.subtitleLink}>Create account</Text>
                 </TouchableOpacity>
             </View>
