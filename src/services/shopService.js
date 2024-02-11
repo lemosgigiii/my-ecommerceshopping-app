@@ -36,7 +36,27 @@ export const shopApi = createApi({
           }
       })
   }),
-}),
+     getUserLocation: builder.query({
+    query: (localId) => `locations/${localId}.json` 
+  }),
+  putUserLocation : builder.mutation({
+    query: ({location, localId})=>({
+      url: `locations/${localId}.json` ,
+      method: 'PUT',
+      body: {
+        latitude: location.latitude,
+        longitue: location.longitude,
+        address: location.address
+
+    }
+    
+    })
+
+  })
+
+
+  
+})
 })
 
 
