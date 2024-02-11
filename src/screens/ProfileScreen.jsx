@@ -41,7 +41,7 @@ const ProfileScreen = ({navigation}) => {
                 <Text style={styles.userTitle}>{user_data.name}</Text>
                 <Text style={styles.userData}>{user_data.role}</Text>
                 <Text style={styles.userData}>level: {user_data.level}</Text>
-                <Text style={styles.userData}>adress: {user_data.address}</Text>
+                <Text style={styles.userData}>address: {user_data.address}</Text>
                 <Text style={styles.userData}>{user_data.city}</Text>
             </View>
            

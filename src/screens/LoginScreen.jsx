@@ -5,8 +5,9 @@ import { useLogInMutation } from '../services/authService'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
+import { insertSession } from '../db'
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -14,28 +15,36 @@ const LoginScreen = ({navigation}) => {
     const [triggerLogIn, result] = useLogInMutation()
 
     const onSubmit = () => {
-        triggerLogIn({email:"gigi2001.es@gmail.com", password:"Paul2323"})
+        triggerLogIn({ email: "gigi2001.es@gmail.com", password: "Paul2323" })
         console.log(result)
     }
-    const dispatch = useDispatch ()
+    const dispatch = useDispatch()
 
-    useEffect(()=> {
-    if(result.data){
-        dispatch(setUser(result.data))
-    }
+    useEffect(() => {
+        if (result.data) {
+            dispatch(setUser(result.data))
+            insertSession({
+                localId: result.data.localId,
+                email: result.data.email,
+                token: result.data.idToken
+            })
+                .then(result => console.log("Success when saving session: ", result))
+                .catch(error => console.log("Error saving session: ", error.message))
+        }
     }, [result])
+
     return (
         <View style={styles.container}>
             <Input
                 label="Email:"
                 onChange={setEmail}
-                
+
             />
             <Input
                 label="Password:"
                 onChange={setPassword}
                 isSecureEntry={true}
-            
+
             />
             <TouchableOpacity style={styles.btn} onPress={onSubmit}>
                 <Text style={styles.btnText}>Log in</Text>
@@ -46,7 +55,7 @@ const LoginScreen = ({navigation}) => {
                     <Text style={styles.subtitleLink}>Create account</Text>
                 </TouchableOpacity>
             </View>
-            </View>
+        </View>
     )
 }
 

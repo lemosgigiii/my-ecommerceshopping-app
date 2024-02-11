@@ -35,6 +35,13 @@ export const authSlice = createSlice({
             state.profilePicture = null
             state.localId = null
             state.location = null
+        },
+        logout: (state) => {
+            state.user = null
+            state.token = null
+            state.profilePicture = null
+            state.localId = null
+            state.location = null
         }
     }   
 })
