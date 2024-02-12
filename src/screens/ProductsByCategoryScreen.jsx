@@ -12,7 +12,7 @@ const ProductsByCategoryScreen = ({ route, navigation }) => {
 
 
   const category = useSelector(state => state.shopReducer.categorySelected)
- 
+
   const { data: productsFilteredByCategory, isLoading, error } = useGetProductsByCategoryQuery(category)
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const ProductsByCategoryScreen = ({ route, navigation }) => {
   return (
     <>
       {
-        isLoading?
+        isLoading ?
           <ActivityIndicator />
           :
           <>

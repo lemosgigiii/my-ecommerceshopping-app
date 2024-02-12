@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator()
 
 const ProfileNavigator = () => {
     return (
-        
+
         <Stack.Navigator
             initialRouteName="profile"
             screenOptions={
@@ -25,8 +25,8 @@ const ProfileNavigator = () => {
                 name="select image"
                 component={ImageSelectorScreen}
             />
-            </Stack.Navigator >
-)
+        </Stack.Navigator >
+    )
 }
 
 export default ProfileNavigator

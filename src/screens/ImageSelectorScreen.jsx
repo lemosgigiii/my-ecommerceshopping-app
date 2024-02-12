@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProfilePicture } from '../features/authSlice';
 import { usePutProfilePictureMutation } from '../services/shopService';
 
-const ImageSelectorScreen = ({navigation}) => {
+const ImageSelectorScreen = ({ navigation }) => {
   const [image, setImage] = useState('');
 
-  const localId = useSelector(state=>state.authReducer.localId)
+  const localId = useSelector(state => state.authReducer.localId)
 
-  const verifyCameraPermissions = async() => {
+  const verifyCameraPermissions = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync()
     if (!granted) {
       return false
@@ -32,7 +32,7 @@ const ImageSelectorScreen = ({navigation}) => {
         quality: 0.1
       })
       if (!result.canceled) {
-        
+
         setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
       }
     } else {
@@ -46,9 +46,9 @@ const ImageSelectorScreen = ({navigation}) => {
 
   const confirmImage = () => {
     dispatch(setProfilePicture(image))
-    triggerSaveProfilePicture({image, localId})
+    triggerSaveProfilePicture({ image, localId })
     navigation.goBack()
-   }
+  }
 
   return (
     <View style={styles.container}>

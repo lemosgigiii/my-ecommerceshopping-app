@@ -14,24 +14,24 @@ import { getDistance } from 'geolib/es/getPreciseDistance'
 
 
 const LocationSelector = () => {
-    const [location,setLocation] = useState("") 
-    const [error,setError] = useState("")
+    const [location, setLocation] = useState("")
+    const [error, setError] = useState("")
     const [address, setAddress] = useState("")
-    const [distance, setDistance] = useState ("")
-    const localId = useSelector(state=>state.authReducer.localId)
-    const [triggerPutUserLocation, result] = usePutUserLocationMutation()
+    const [distance, setDistance] = useState("")
+    const localId = useSelector(state => state.authReducer.localId)
+    const [triggerPutUserLocation] = usePutUserLocationMutation()
 
-    useEffect(()=> {
-        (async ()=>{
-            let {status} = await Location.requestForegroundPermissionsAsync()
-            if(status!=="granted"){
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync()
+            if (status !== "granted") {
                 setError("No se han ortorgado los permisos para obtener la ubicación")
                 return
             }
             let location = await Location.getCurrentPositionAsync()
-            setLocation({latitude: location.coords.latitude, longitude: location.coords.longitude})
+            setLocation({ latitude: location.coords.latitude, longitude: location.coords.longitude })
         })()
-    },[])
+    }, [])
 
     useEffect(() => {
         (
@@ -44,7 +44,7 @@ const LocationSelector = () => {
                         const formattedAdress = await data.results[0].formatted_address
                         const distance = getDistance(
                             { latitude: location.latitude, longitude: location.longitude },
-                            { latitude: location.latitude, longitude: location.longitude+0.01 }
+                            { latitude: location.latitude, longitude: location.longitude + 0.01 }
                         )
                         setAddress(formattedAdress)
                         setDistance(distance)
@@ -58,24 +58,24 @@ const LocationSelector = () => {
     console.log("error ", error)
     console.log("address ", address)
 
-    const dispatch = useDispatch ()
+    const dispatch = useDispatch()
 
     const onConfirmAddress = () => {
         const locationFormatted = {
-            latitude : location.latitude,
-            longitude : location.longitude,
-            address : address
+            latitude: location.latitude,
+            longitude: location.longitude,
+            address: address
+        }
+        dispatch(setUserLocation(locationFormatted))
+
+        triggerPutUserLocation({ location: locationFormatted, localId })
     }
-    dispatch(setUserLocation(locationFormatted))
-
-    triggerPutUserLocation({location:locationFormatted, localId})
-}
-    
 
 
-    
 
-    
+
+
+
 
 
     return (
@@ -83,20 +83,20 @@ const LocationSelector = () => {
             <Text style={styles.textTitle}>my current location: </Text>
             {
                 location.latitude
-                ?
-                <>
-                <Text style={styles.textAddress}>{address}</Text>
-                <Text style={styles.textAddress}>Distance to nearest store: {distance}</Text>
-                <Text style={styles.textLocation}>
-                     (Lat: {location.latitude}, Long: {location.longitude})
-                </Text>
-                <TouchableOpacity style={styles.btn} onPress={onConfirmAddress}>
-                    <Text style={styles.textBtn}>Update location</Text>
-                </TouchableOpacity>
-                <MapPreview location={location} />
-                </>
-                :
-                <ActivityIndicator />
+                    ?
+                    <>
+                        <Text style={styles.textAddress}>{address}</Text>
+                        <Text style={styles.textAddress}>Distance to nearest store: {distance}</Text>
+                        <Text style={styles.textLocation}>
+                            (Lat: {location.latitude}, Long: {location.longitude})
+                        </Text>
+                        <TouchableOpacity style={styles.btn} onPress={onConfirmAddress}>
+                            <Text style={styles.textBtn}>Update location</Text>
+                        </TouchableOpacity>
+                        <MapPreview location={location} />
+                    </>
+                    :
+                    <ActivityIndicator />
             }
         </View>
     )
@@ -106,11 +106,11 @@ export default LocationSelector
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:20,
+        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 130,
-        gap:5,
+        gap: 5,
     },
     noLocationContainer: {
         width: 200,
@@ -121,25 +121,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    btn:{
-      padding: 10,
-      backgroundColor: colors.success,
-      borderRadius:5,
-      paddingHorizontal: 15,   
-      marginVertical:15,   
+    btn: {
+        padding: 10,
+        backgroundColor: colors.success,
+        borderRadius: 5,
+        paddingHorizontal: 15,
+        marginVertical: 15,
     },
     textBtn: {
         fontFamily: 'EBGaramond-Bold',
-        color:"#fff"
-    },textTitle:{
+        color: "#fff"
+    }, textTitle: {
         fontFamily: "EBGaramond-Bold",
-        fontSize:16,
+        fontSize: 16,
     },
     textAddress: {
-        fontFamily:'EBGaramond-Bold'
+        fontFamily: 'EBGaramond-Bold'
     },
     textLocation: {
         fontFamily: 'EBGaramond-Bold',
-        fontSize:12
+        fontSize: 12
     }
 })

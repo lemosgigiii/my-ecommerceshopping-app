@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator()
 
 const CartNavigator = () => {
     return (
-        
+
         <Stack.Navigator
             initialRouteName="cart"
             screenOptions={
@@ -21,8 +21,8 @@ const CartNavigator = () => {
                 component={CartScreen}
             />
 
-            </Stack.Navigator >
-)
+        </Stack.Navigator >
+    )
 }
 
 export default CartNavigator

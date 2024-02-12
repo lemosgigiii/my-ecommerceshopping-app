@@ -16,48 +16,59 @@ export const shopApi = createApi({
     getProductsByCategory: builder.query({
       query: (category) => `products.json?orderBy="category"&equalTo="${category}"`,
     }),
+
     postOrder: builder.mutation({
-      query: ({...order}) => ({
-        url: 'orders.json',
+      query: (order) => ({
+        url: `orders/${order.localId}.json`,
         method: 'POST',
         body: order
-
-     })
+      }),
     }),
+
+    getOrders: builder.query({
+      query: (localId) => `orders/${localId}.json`
+    }),
+
     getProfilePicture: builder.query({
-      query: (localId) => `profilePictures/${localId}.json` 
+      query: (localId) => `profilePictures/${localId}.json`
     }),
+
     putProfilePicture: builder.mutation({
-      query: ({image, localId})=>({
-          url:  `profilePictures/${localId}.json`,
-          method: 'PUT',
-          body: {
-              image: image,
-          }
+      query: ({ image, localId }) => ({
+        url: `profilePictures/${localId}.json`,
+        method: 'PUT',
+        body: {
+          image: image,
+        }
+      }),
+    }),
+
+    getUserLocation: builder.query({
+      query: (localId) => `locations/${localId}.json`
+    }),
+
+    putUserLocation: builder.mutation({
+      query: ({ location, localId }) => ({
+        url: `locations/${localId}.json`,
+        method: 'PUT',
+        body: {
+          latitude: location.latitude,
+          longitude: location.longitude,
+          address: location.address
+        }
       })
-  }),
-     getUserLocation: builder.query({
-    query: (localId) => `locations/${localId}.json` 
-  }),
-  putUserLocation : builder.mutation({
-    query: ({location, localId})=>({
-      url: `locations/${localId}.json` ,
-      method: 'PUT',
-      body: {
-        latitude: location.latitude,
-        longitue: location.longitude,
-        address: location.address
-
-    }
-    
     })
-
   })
+});
 
-
-  
-})
-})
-
-
-export const {useGetCategoriesQuery, useGetProductsQuery, useGetProductsByCategoryQuery, usePostOrderMutation,useGetOrdersQuery,usePutProfilePictureMutation,useGetProfilePictureQuery,useGetUserLocationQuery,usePutUserLocationMutation,} = shopApi
+export const {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+  useGetProductsByCategoryQuery,
+  usePostOrderMutation,
+  useGetOrdersQuery,
+  useGetProfilePictureQuery,
+  usePutProfilePictureMutation,
+  useGetUserLocationQuery,
+  usePutUserLocationMutation,
+} = shopApi;

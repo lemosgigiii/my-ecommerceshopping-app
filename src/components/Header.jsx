@@ -8,14 +8,14 @@ import { deleteSession } from '../db';
 
 const Header = ({ title, navigation }) => {
 
-  const email = useSelector(state=>state.authReducer.user)
-    const localId = useSelector(state=>state.authReducer.localId)
-    const dispatch = useDispatch()
-    const onLogout = ()=>{
-        dispatch(logout())
-        deleteSession(localId)
+  const email = useSelector(state => state.authReducer.user)
+  const localId = useSelector(state => state.authReducer.localId)
+  const dispatch = useDispatch()
+  const onLogout = () => {
+    dispatch(logout())
+    deleteSession(localId)
 
-    }
+  }
   return (
     <View style={styles.headercontainer}>
       {

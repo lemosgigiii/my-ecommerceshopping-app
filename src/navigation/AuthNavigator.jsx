@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator()
 
 const AuthNavigator = () => {
     return (
-        
+
         <Stack.Navigator
             initialRouteName="Signup"
             screenOptions={
@@ -25,8 +25,8 @@ const AuthNavigator = () => {
                 component={LoginScreen}
             />
 
-            </Stack.Navigator >
-)
+        </Stack.Navigator >
+    )
 }
 
 export default AuthNavigator

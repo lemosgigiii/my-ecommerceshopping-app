@@ -8,7 +8,7 @@ import { setUser } from '../features/authSlice'
 import { signupSchema } from '../validations/signupSchema'
 
 
-const SignupScreen = ({navigation}) => {
+const SignupScreen = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -20,43 +20,43 @@ const SignupScreen = ({navigation}) => {
 
     const onSubmit = () => {
         try {
-            signupSchema.validateSync({email, password, confirmPassword}, {abortEarly:false})
-        triggerSignup({email, password})
-    }catch(error){
-        
-        error.errors.map(e => {
-            console.log(Object.keys(e)[0])
-            const customError = Object.values(e)[0]
-            switch (Object.keys(e)[0]) {
-              case "empty_email":
-                
-                setEmailError(customError)
-              case "invalid_email":
-             
-                setEmailError(customError)
-              case "empty_password":
-            
-                setPasswordError(customError)
-              case "invalid_password":
-                
-                setPasswordError(customError)
-              case "invalid_confirm_password":
-                
-                setConfirmPasswordError(customError)
-              case "invalid_match_password":
-               
-                setConfirmPasswordError(customError)
-              default:
-                break
-            }
-    
-          });
+            signupSchema.validateSync({ email, password, confirmPassword }, { abortEarly: false })
+            triggerSignup({ email, password })
+        } catch (error) {
+
+            error.errors.map(e => {
+                console.log(Object.keys(e)[0])
+                const customError = Object.values(e)[0]
+                switch (Object.keys(e)[0]) {
+                    case "empty_email":
+
+                        setEmailError(customError)
+                    case "invalid_email":
+
+                        setEmailError(customError)
+                    case "empty_password":
+
+                        setPasswordError(customError)
+                    case "invalid_password":
+
+                        setPasswordError(customError)
+                    case "invalid_confirm_password":
+
+                        setConfirmPasswordError(customError)
+                    case "invalid_match_password":
+
+                        setConfirmPasswordError(customError)
+                    default:
+                        break
+                }
+
+            });
         }
         triggerSignup({ email, password })
-      
-      }
 
-    const dispatch = useDispatch ()
+    }
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (result.data) {
@@ -82,7 +82,7 @@ const SignupScreen = ({navigation}) => {
                 onChange={setConfirmPassword}
                 isSecureEntry={true}
                 error={confirmPasswordError}
-            
+
             />
             <TouchableOpacity style={styles.btn} onPress={onSubmit}>
                 <Text style={styles.btnText}>Register</Text>
@@ -93,7 +93,7 @@ const SignupScreen = ({navigation}) => {
                     <Text style={styles.subtitleLink}>Log in</Text>
                 </TouchableOpacity>
             </View>
-            </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
     )
 }
 

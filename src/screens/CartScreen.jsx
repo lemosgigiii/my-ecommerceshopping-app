@@ -4,31 +4,33 @@ import CartItem from '../components/CartItem';
 import { useSelector } from 'react-redux';
 import { usePostOrderMutation } from '../services/shopService';
 
-const CartScreen = ({}) => {
+const CartScreen = ({ }) => {
 
-    const cartItems = useSelector(state=>state.cartReducer.items)
-    const total = useSelector(state=>state.cartReducer.total)
-    const [triggerPost, result] =  usePostOrderMutation()
+  const cartItems = useSelector(state => state.cartReducer.items)
+  const total = useSelector(state => state.cartReducer.total)
+  const localId = useSelector(state => state.authReducer.localId)
+  const [triggerPost, result] = usePostOrderMutation()
 
-    const confirmCart = ()=>{
-      triggerPost({total, cartItems,user:"LoggedUser"})
-    }
-      
-    const renderCartItem = ({item}) => (
-        <CartItem item={item} />
-    )
+  const confirmCart = () => {
+    const createdAt = Date.now()
+    triggerPost({ total, cartItems, localId: localId, createdAt: createdAt, orderId: Math.ceil(Math.random(1, 10) * 1000) })
+  }
+
+  const renderCartItem = ({ item }) => (
+    <CartItem item={item} />
+  )
   return (
     <View style={styles.cartContainer}>
-        <FlatList
+      <FlatList
         data={cartItems}
         renderItem={renderCartItem}
         keyExtractor={item => item.id}
-        />
-        <View style={styles.cartConfirm}>
-      <Text style={styles.totalPrice}>total : USD {total}</Text>
-      <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
+      />
+      <View style={styles.cartConfirm}>
+        <Text style={styles.totalPrice}>total : USD {total}</Text>
+        <TouchableOpacity style={styles.confirmButton} onPress={confirmCart}>
           <Text style={styles.textConfirm}> confirm  </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -37,7 +39,7 @@ const CartScreen = ({}) => {
 export default CartScreen
 
 const styles = StyleSheet.create({
-cartContainer: {
+  cartContainer: {
     flex: 1,
   },
   cartConfirm: {
@@ -52,14 +54,14 @@ cartContainer: {
     fontSize: 20,
     color: "grey",
   },
-  confirmButton:{
+  confirmButton: {
     backgroundColor: colors.secondary,
-    padding:10,
-    borderRadius:10,
+    padding: 10,
+    borderRadius: 10,
   },
-  textConfirm:{
-    fontFamily:'EBGaramond-Bold',
-    fontSize:16,
+  textConfirm: {
+    fontFamily: 'EBGaramond-Bold',
+    fontSize: 16,
     color: '#fff',
   },
 })

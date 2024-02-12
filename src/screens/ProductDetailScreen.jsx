@@ -27,14 +27,14 @@ const ProductDetailScreen = ({ route }) => {
   }
     , [productId])
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    const onAddToCart = () => {
-      dispatch(addItem({...productSelected, quantity: 1}))
+  const onAddToCart = () => {
+    dispatch(addItem({ ...productSelected, quantity: 1 }))
 
-    }
+  }
 
-   
+
 
   return (
     <>
@@ -44,7 +44,7 @@ const ProductDetailScreen = ({ route }) => {
           <ActivityIndicator />
           :
           <>
-          {/* <Header title="details of the products" /> */}
+            {/* <Header title="details of the products" /> */}
             <ScrollView >
               <Image
                 source={{ uri: productSelected.images[0] }}
