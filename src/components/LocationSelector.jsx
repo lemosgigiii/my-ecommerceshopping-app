@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { useState, useEffect } from 'react'
 import * as Location from 'expo-location'
 import MapPreview from './MapPreview'
